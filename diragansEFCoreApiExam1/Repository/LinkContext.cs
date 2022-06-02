@@ -12,6 +12,7 @@ namespace diragansEFCoreApiExam1.Repository
         {
         }
 
+        //Setting Entity Set
         public DbSet<Product> Products { get; set; }
  
        

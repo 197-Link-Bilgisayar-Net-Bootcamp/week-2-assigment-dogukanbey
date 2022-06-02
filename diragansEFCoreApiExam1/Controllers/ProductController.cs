@@ -17,7 +17,7 @@ namespace diragansEFCoreApiExam1.Controllers
         }
 
 
-
+        //Get all products
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -25,6 +25,7 @@ namespace diragansEFCoreApiExam1.Controllers
         }
 
 
+        //Get 1 product by id
         [HttpGet("{id}")]  
         public IActionResult GetById(int id)
         {
@@ -33,7 +34,7 @@ namespace diragansEFCoreApiExam1.Controllers
 
 
 
-
+        //Insert a new product record
         [HttpPost]
         public IActionResult Add([FromBody] Product product)
         {
@@ -44,7 +45,7 @@ namespace diragansEFCoreApiExam1.Controllers
 
       
 
-
+        //Edit a product 
         [HttpPut]
         public IActionResult Update(Product product)
         {
@@ -54,20 +55,13 @@ namespace diragansEFCoreApiExam1.Controllers
 
 
 
-
+        //Delete a product by ID
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _productService.DeleteProduct(id);
             return Ok($"Deleted ID:{id}");
         }
-
-
-
-
-
-
-
 
 
     }
