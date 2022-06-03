@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using diragansEFCoreApiExam1.Models;
 using diragansEFCoreApiExam1.Repository;
@@ -9,11 +9,11 @@ namespace diragansEFCoreApiExam1.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-     
-        private readonly IProductRepository _productService;
-        public ProductController(IProductRepository productService)
+       
+        private readonly IProductRepository _productRepository;
+        public ProductController(IProductRepository productRepository)
         {
-            _productService = productService;
+            _productRepository = productRepository;
         }
 
 
@@ -21,15 +21,22 @@ namespace diragansEFCoreApiExam1.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_productService.GetAllProduct());
+            try
+            {
+                return Ok(_productRepository.GetAllProduct());
+            }
+            catch { return NotFound(); }
         }
 
 
         //Get 1 product by id
         [HttpGet("{id}")]  
         public IActionResult GetById(int id)
-        {
-            return Ok(_productService.GetProductByID(id));
+        {   try
+            {
+                return Ok(_productRepository.GetProductByID(id));
+            }
+            catch { return NotFound(); }
         }
 
 
@@ -38,8 +45,12 @@ namespace diragansEFCoreApiExam1.Controllers
         [HttpPost]
         public IActionResult Add([FromBody] Product product)
         {
-            _productService.AddProduct(product);
-            return Ok(product);
+            try
+            {
+                _productRepository.AddProduct(product);
+                return Ok();
+            }
+            catch { return BadRequest(); }
         }
 
 
@@ -49,8 +60,12 @@ namespace diragansEFCoreApiExam1.Controllers
         [HttpPut]
         public IActionResult Update(Product product)
         {
-            _productService.UpdateProduct(product);
-            return Ok(product);
+            try
+            {
+                _productRepository.UpdateProduct(product);
+                return Ok(product);
+            }
+            catch { return BadRequest(); }
         }
 
 
@@ -59,9 +74,14 @@ namespace diragansEFCoreApiExam1.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _productService.DeleteProduct(id);
-            return Ok($"Deleted ID:{id}");
-        }
+            try
+            {
+                _productRepository.DeleteProduct(id);
+                return Ok($"Deleted ID:{id}");
+            }
+            catch { return BadRequest(); }
+    }
+ 
 
 
     }
