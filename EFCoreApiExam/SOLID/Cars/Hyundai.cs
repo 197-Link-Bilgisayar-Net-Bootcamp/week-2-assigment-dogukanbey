@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace SOLIDformExample.Cars
 {
-    public class BMW :BaseArac, IEmailSender, IPostSender
+    public class Hyundai : BaseArac, IEmailSender, IMultipleEmail
     {
 
         public override double GetCostPerDay()
         {
-            return 10;
+            return 6;
         }
 
-        public void SendEmail(string email , string note)
+
+
+        public void SendEmail(string email, string note)
         {
 
         }
 
-
-        public void SendPost(string address, string note)
+        public void SendMultipleEmail(List<string> email, string note)
         {
-
+          
         }
-
-
     }
 }
