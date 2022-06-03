@@ -11,7 +11,7 @@ builder.Services.AddDbContext<LinkContext>(options =>
 //options.UseSqlServer(builder.Configuration.GetConnectionString("LocalMSSqlConnection")));
 options.UseSqlServer(builder.Configuration.GetConnectionString("AzureDbConnection")));
 
-builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
 
 
 builder.Services.AddEndpointsApiExplorer();

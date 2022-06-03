@@ -10,8 +10,8 @@ namespace diragansEFCoreApiExam1.Controllers
     public class ProductController : ControllerBase
     {
      
-        private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IProductRepository _productService;
+        public ProductController(IProductRepository productService)
         {
             _productService = productService;
         }
